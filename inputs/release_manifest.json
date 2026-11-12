@@ -1,0 +1,43 @@
+{
+  "release_id": "TYN-REL-2.8.0",
+  "release_name": "TYN Payments 2.8",
+  "version": "2.8.0",
+  "target_date": "2026-11-20T17:00:00Z",
+  "requirements": [
+    {
+      "id": "REL-SEC-01",
+      "title": "Payment data security review",
+      "description": "The release must have a completed security review, with no unresolved critical or high-severity findings and explicit sign-off.",
+      "mandatory": true,
+      "evidence_issue_keys": ["TYN-101", "TYN-102", "TYN-103"]
+    },
+    {
+      "id": "REL-QA-02",
+      "title": "Critical payment-path regression coverage",
+      "description": "Automated regression tests must cover card authorization, retries, refunds, and idempotency; the latest run must pass.",
+      "mandatory": true,
+      "evidence_issue_keys": ["TYN-104", "TYN-105", "TYN-106"]
+    },
+    {
+      "id": "REL-OPS-03",
+      "title": "Production observability and alerting",
+      "description": "Dashboards and actionable alerts for authorization errors, latency, and duplicate charges must be deployed and verified.",
+      "mandatory": true,
+      "evidence_issue_keys": ["TYN-107", "TYN-108"]
+    },
+    {
+      "id": "REL-OPS-04",
+      "title": "Rollback and recovery readiness",
+      "description": "A rehearsed rollback plan, database compatibility check, and named on-call coverage must be recorded before release.",
+      "mandatory": true,
+      "evidence_issue_keys": ["TYN-109", "TYN-110"]
+    },
+    {
+      "id": "REL-DOC-05",
+      "title": "Customer and support communications",
+      "description": "Customer-facing release notes and support guidance must be reviewed and ready to publish.",
+      "mandatory": true,
+      "evidence_issue_keys": ["TYN-111", "TYN-112", "TYN-113"]
+    }
+  ]
+}

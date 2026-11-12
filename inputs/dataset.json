@@ -1,0 +1,254 @@
+{
+  "project_key": "TYN",
+  "tickets": [
+    {
+      "source_id": "SRC-SEC-001",
+      "issue_key": "TYN-101",
+      "summary": "Complete payment tokenization security review",
+      "description": "Review the 2.8 tokenization and vault integration, including threat model, secrets handling, and PCI scope.",
+      "issue_type": "Task",
+      "status": "In Progress",
+      "assignee": "Mina Patel",
+      "reporter": "Alex Chen",
+      "created": "2026-10-28T09:10:00Z",
+      "updated": "2026-11-10T14:22:00Z",
+      "labels": ["release-2.8", "security"],
+      "links": ["https://example.test/security/review-28"],
+      "comments": [
+        {"source_id":"SRC-C-101-1","author":"Mina Patel","created":"2026-10-29T11:00:00Z","body":"Threat model updated with the new vault boundary; review is underway.","links":["https://example.test/security/threat-model-28"]},
+        {"source_id":"SRC-C-101-2","author":"Jordan Lee","created":"2026-11-02T15:40:00Z","body":"The dependency scan found one high finding in the legacy webhook library. Remediation is tracked in TYN-102.","links":[]},
+        {"source_id":"SRC-C-101-3","author":"Mina Patel","created":"2026-11-07T10:12:00Z","body":"Retest confirms the patched package is clean. Waiting for security owner sign-off.","links":["https://example.test/scans/scan-884"]},
+        {"source_id":"SRC-C-101-4","author":"Ravi Shah","created":"2026-11-10T14:22:00Z","body":"No final approval recorded yet; please attach the signed review before release.","links":[]}
+      ]
+    },
+    {
+      "source_id": "SRC-SEC-002",
+      "issue_key": "TYN-102",
+      "summary": "Upgrade vulnerable webhook dependency",
+      "description": "Replace the affected webhook parser and verify signature validation behavior.",
+      "issue_type": "Bug",
+      "status": "Done",
+      "assignee": "Jordan Lee",
+      "reporter": "Mina Patel",
+      "created": "2026-11-01T08:30:00Z",
+      "updated": "2026-11-08T16:05:00Z",
+      "labels": ["release-2.8", "security", "dependency"],
+      "links": ["https://example.test/changes/PR-2841"],
+      "comments": [
+        {"source_id":"SRC-C-102-1","author":"Jordan Lee","created":"2026-11-02T09:00:00Z","body":"Updated parser to 4.7.2 and added signature regression cases.","links":["https://example.test/changes/PR-2841"]},
+        {"source_id":"SRC-C-102-2","author":"Mina Patel","created":"2026-11-04T13:15:00Z","body":"CI and dependency scan pass on the patch branch.","links":["https://example.test/scans/scan-884"]},
+        {"source_id":"SRC-C-102-3","author":"Jordan Lee","created":"2026-11-08T16:05:00Z","body":"Merged to release/2.8. No known high findings remain for this dependency.","links":[]}
+      ]
+    },
+    {
+      "source_id": "SRC-SEC-003",
+      "issue_key": "TYN-103",
+      "summary": "Security owner release sign-off",
+      "description": "Obtain explicit approval for the payment security review and record any accepted residual risk.",
+      "issue_type": "Approval",
+      "status": "To Do",
+      "assignee": "Ravi Shah",
+      "reporter": "Alex Chen",
+      "created": "2026-11-05T12:00:00Z",
+      "updated": "2026-11-11T09:20:00Z",
+      "labels": ["release-2.8", "security", "approval"],
+      "links": [],
+      "comments": [
+        {"source_id":"SRC-C-103-1","author":"Ravi Shah","created":"2026-11-06T09:00:00Z","body":"Review checklist is ready; approval will follow the final scan.","links":[]},
+        {"source_id":"SRC-C-103-2","author":"Mina Patel","created":"2026-11-08T16:30:00Z","body":"Final scan attached to TYN-102. Please complete the owner sign-off.","links":["https://example.test/scans/scan-884"]},
+        {"source_id":"SRC-C-103-3","author":"Ravi Shah","created":"2026-11-11T09:20:00Z","body":"I have not approved this yet; the threat-model exception needs a written disposition.","links":[]}
+      ]
+    },
+    {
+      "source_id": "SRC-QA-001",
+      "issue_key": "TYN-104",
+      "summary": "Add authorization and refund regression suite",
+      "description": "Automate card authorization, refund, retry, and duplicate-request scenarios for the 2.8 payment flow.",
+      "issue_type": "Story",
+      "status": "Done",
+      "assignee": "Noah Kim",
+      "reporter": "Priya Nair",
+      "created": "2026-10-25T10:20:00Z",
+      "updated": "2026-11-09T18:00:00Z",
+      "labels": ["release-2.8", "qa", "payments"],
+      "links": ["https://example.test/ci/run/77021"],
+      "comments": [
+        {"source_id":"SRC-C-104-1","author":"Noah Kim","created":"2026-10-30T14:00:00Z","body":"Authorization success and decline cases are automated.","links":[]},
+        {"source_id":"SRC-C-104-2","author":"Priya Nair","created":"2026-11-03T11:40:00Z","body":"Added refund and retry scenarios; idempotency cases are still being reviewed.","links":[]},
+        {"source_id":"SRC-C-104-3","author":"Noah Kim","created":"2026-11-09T18:00:00Z","body":"Suite is merged. Latest CI run passed 184 checks; duplicate-request coverage is in TYN-105.","links":["https://example.test/ci/run/77021"]},
+        {"source_id":"SRC-C-104-4","author":"Priya Nair","created":"2026-11-10T08:25:00Z","body":"Confirmed the run is against release/2.8 commit 92ad81.","links":["https://example.test/ci/run/77021"]}
+      ]
+    },
+    {
+      "source_id": "SRC-QA-002",
+      "issue_key": "TYN-105",
+      "summary": "Verify payment idempotency under retry",
+      "description": "Prove repeated client requests and network retries cannot create duplicate charges.",
+      "issue_type": "Test",
+      "status": "In Progress",
+      "assignee": "Priya Nair",
+      "reporter": "Noah Kim",
+      "created": "2026-11-02T09:15:00Z",
+      "updated": "2026-11-11T15:50:00Z",
+      "labels": ["release-2.8", "qa", "payments"],
+      "links": ["https://example.test/ci/run/77102"],
+      "comments": [
+        {"source_id":"SRC-C-105-1","author":"Priya Nair","created":"2026-11-03T10:00:00Z","body":"Added repeat-request test for identical idempotency keys.","links":[]},
+        {"source_id":"SRC-C-105-2","author":"Noah Kim","created":"2026-11-06T17:00:00Z","body":"The first CI run found a race in the delayed callback path; fix is under review.","links":["https://example.test/ci/run/77090"]},
+        {"source_id":"SRC-C-105-3","author":"Priya Nair","created":"2026-11-11T15:50:00Z","body":"Retry-path patch passes locally, but the CI rerun is still pending.","links":["https://example.test/changes/PR-2914"]}
+      ]
+    },
+    {
+      "source_id": "SRC-QA-003",
+      "issue_key": "TYN-106",
+      "summary": "Run release candidate payment regression",
+      "description": "Execute the full critical payment-path regression suite against the release candidate.",
+      "issue_type": "Test",
+      "status": "In Progress",
+      "assignee": "Noah Kim",
+      "reporter": "Alex Chen",
+      "created": "2026-11-08T08:00:00Z",
+      "updated": "2026-11-12T08:10:00Z",
+      "labels": ["release-2.8", "qa", "release-gate"],
+      "links": ["https://example.test/ci/run/77102"],
+      "comments": [
+        {"source_id":"SRC-C-106-1","author":"Noah Kim","created":"2026-11-09T08:20:00Z","body":"Started regression on candidate build 2.8.0-rc3.","links":[]},
+        {"source_id":"SRC-C-106-2","author":"Priya Nair","created":"2026-11-10T12:45:00Z","body":"Authorization and refund groups pass; waiting on idempotency test fix.","links":["https://example.test/ci/run/77102"]},
+        {"source_id":"SRC-C-106-3","author":"Noah Kim","created":"2026-11-12T08:10:00Z","body":"Run is not complete. Do not treat the current partial pass as release sign-off.","links":[]}
+      ]
+    },
+    {
+      "source_id": "SRC-OPS-001",
+      "issue_key": "TYN-107",
+      "summary": "Publish payment SLO dashboard",
+      "description": "Expose authorization success, p95 latency, and duplicate-charge signals for the new payment service.",
+      "issue_type": "Task",
+      "status": "Done",
+      "assignee": "Elena Garcia",
+      "reporter": "Sam Wilson",
+      "created": "2026-10-26T13:00:00Z",
+      "updated": "2026-11-06T10:15:00Z",
+      "labels": ["release-2.8", "observability"],
+      "links": ["https://example.test/dashboards/payments-v2"],
+      "comments": [
+        {"source_id":"SRC-C-107-1","author":"Elena Garcia","created":"2026-10-31T09:30:00Z","body":"Dashboard panel draft is available in staging.","links":["https://example.test/dashboards/payments-v2"]},
+        {"source_id":"SRC-C-107-2","author":"Sam Wilson","created":"2026-11-03T16:10:00Z","body":"Added p95 latency and authorization rate panels.","links":[]},
+        {"source_id":"SRC-C-107-3","author":"Elena Garcia","created":"2026-11-06T10:15:00Z","body":"Dashboard deployed to production and verified with synthetic traffic.","links":["https://example.test/dashboards/payments-v2"]}
+      ]
+    },
+    {
+      "source_id": "SRC-OPS-002",
+      "issue_key": "TYN-108",
+      "summary": "Configure actionable payment failure alerts",
+      "description": "Add on-call alerts for authorization error rate, elevated latency, and duplicate-charge detection.",
+      "issue_type": "Task",
+      "status": "In Progress",
+      "assignee": "Sam Wilson",
+      "reporter": "Elena Garcia",
+      "created": "2026-10-29T11:00:00Z",
+      "updated": "2026-11-11T13:30:00Z",
+      "labels": ["release-2.8", "observability", "on-call"],
+      "links": ["https://example.test/alerts/payment-service"],
+      "comments": [
+        {"source_id":"SRC-C-108-1","author":"Sam Wilson","created":"2026-11-01T14:00:00Z","body":"Authorization error-rate alert is enabled in production.","links":[]},
+        {"source_id":"SRC-C-108-2","author":"Elena Garcia","created":"2026-11-05T10:30:00Z","body":"Latency alert is configured at p95 > 800ms for five minutes.","links":["https://example.test/alerts/payment-service"]},
+        {"source_id":"SRC-C-108-3","author":"Sam Wilson","created":"2026-11-11T13:30:00Z","body":"Duplicate-charge alert is still waiting for the dedupe metric to land; ticket remains open.","links":[]}
+      ]
+    },
+    {
+      "source_id": "SRC-OPS-003",
+      "issue_key": "TYN-109",
+      "summary": "Rehearse release rollback and database compatibility",
+      "description": "Validate rollback steps and confirm database schema changes remain compatible with the previous service version.",
+      "issue_type": "Task",
+      "status": "In Progress",
+      "assignee": "Luca Rossi",
+      "reporter": "Sam Wilson",
+      "created": "2026-11-01T12:00:00Z",
+      "updated": "2026-11-12T07:40:00Z",
+      "labels": ["release-2.8", "rollback", "operations"],
+      "links": [],
+      "comments": [
+        {"source_id":"SRC-C-109-1","author":"Luca Rossi","created":"2026-11-03T08:00:00Z","body":"Draft rollback checklist prepared for the service deployment.","links":[]},
+        {"source_id":"SRC-C-109-2","author":"Sam Wilson","created":"2026-11-07T15:20:00Z","body":"Schema compatibility review is still open; rollback rehearsal is scheduled for Nov 13.","links":[]},
+        {"source_id":"SRC-C-109-3","author":"Luca Rossi","created":"2026-11-12T07:40:00Z","body":"No rehearsal result is recorded yet. Previous-version read compatibility needs confirmation.","links":[]}
+      ]
+    },
+    {
+      "source_id": "SRC-OPS-004",
+      "issue_key": "TYN-110",
+      "summary": "Confirm release on-call coverage",
+      "description": "Record primary and secondary on-call ownership for deployment and first-hour monitoring.",
+      "issue_type": "Task",
+      "status": "Done",
+      "assignee": "Sam Wilson",
+      "reporter": "Luca Rossi",
+      "created": "2026-11-04T09:00:00Z",
+      "updated": "2026-11-10T16:30:00Z",
+      "labels": ["release-2.8", "operations", "on-call"],
+      "links": ["https://example.test/oncall/rota/2026-11-20"],
+      "comments": [
+        {"source_id":"SRC-C-110-1","author":"Sam Wilson","created":"2026-11-05T10:15:00Z","body":"Primary and secondary responders assigned for release day.","links":["https://example.test/oncall/rota/2026-11-20"]},
+        {"source_id":"SRC-C-110-2","author":"Luca Rossi","created":"2026-11-07T11:00:00Z","body":"Both responders acknowledged the schedule.","links":[]},
+        {"source_id":"SRC-C-110-3","author":"Sam Wilson","created":"2026-11-10T16:30:00Z","body":"Coverage is confirmed for deployment and the first-hour watch.","links":["https://example.test/oncall/rota/2026-11-20"]}
+      ]
+    },
+    {
+      "source_id": "SRC-DOC-001",
+      "issue_key": "TYN-111",
+      "summary": "Draft customer-facing 2.8 release notes",
+      "description": "Prepare customer release notes describing payment retries, refunds, and known limitations.",
+      "issue_type": "Task",
+      "status": "Done",
+      "assignee": "Ava Brooks",
+      "reporter": "Morgan Reed",
+      "created": "2026-10-30T10:00:00Z",
+      "updated": "2026-11-09T12:00:00Z",
+      "labels": ["release-2.8", "documentation"],
+      "links": ["https://example.test/docs/release-2.8-draft"],
+      "comments": [
+        {"source_id":"SRC-C-111-1","author":"Ava Brooks","created":"2026-11-02T13:00:00Z","body":"Draft covers refunds and the new retry experience.","links":["https://example.test/docs/release-2.8-draft"]},
+        {"source_id":"SRC-C-111-2","author":"Morgan Reed","created":"2026-11-06T14:30:00Z","body":"Product review completed; support wording is linked in TYN-112.","links":[]},
+        {"source_id":"SRC-C-111-3","author":"Ava Brooks","created":"2026-11-09T12:00:00Z","body":"Copy edited and ready for final support approval.","links":["https://example.test/docs/release-2.8-draft"]}
+      ]
+    },
+    {
+      "source_id": "SRC-DOC-002",
+      "issue_key": "TYN-112",
+      "summary": "Review support playbook for payment changes",
+      "description": "Update support guidance for payment retries, refund status, and duplicate-charge investigation.",
+      "issue_type": "Task",
+      "status": "In Progress",
+      "assignee": "Morgan Reed",
+      "reporter": "Ava Brooks",
+      "created": "2026-11-03T08:20:00Z",
+      "updated": "2026-11-11T17:45:00Z",
+      "labels": ["release-2.8", "documentation", "support"],
+      "links": ["https://example.test/docs/support-payments-28"],
+      "comments": [
+        {"source_id":"SRC-C-112-1","author":"Morgan Reed","created":"2026-11-04T10:00:00Z","body":"Updated retry and refund troubleshooting steps.","links":["https://example.test/docs/support-payments-28"]},
+        {"source_id":"SRC-C-112-2","author":"Ava Brooks","created":"2026-11-08T16:00:00Z","body":"Support lead requested a clearer duplicate-charge escalation path.","links":[]},
+        {"source_id":"SRC-C-112-3","author":"Morgan Reed","created":"2026-11-11T17:45:00Z","body":"Revision is uploaded, but support lead review is not complete.","links":["https://example.test/docs/support-payments-28"]}
+      ]
+    },
+    {
+      "source_id": "SRC-DOC-003",
+      "issue_key": "TYN-113",
+      "summary": "Schedule publication of release communications",
+      "description": "Confirm the approved release notes and support guidance are scheduled for publication.",
+      "issue_type": "Task",
+      "status": "To Do",
+      "assignee": "Ava Brooks",
+      "reporter": "Morgan Reed",
+      "created": "2026-11-10T09:00:00Z",
+      "updated": "2026-11-12T09:15:00Z",
+      "labels": ["release-2.8", "documentation", "release-gate"],
+      "links": [],
+      "comments": [
+        {"source_id":"SRC-C-113-1","author":"Ava Brooks","created":"2026-11-10T09:30:00Z","body":"Publication is scheduled after support sign-off.","links":[]},
+        {"source_id":"SRC-C-113-2","author":"Morgan Reed","created":"2026-11-11T15:10:00Z","body":"Waiting for final review on TYN-112 before scheduling.","links":[]},
+        {"source_id":"SRC-C-113-3","author":"Ava Brooks","created":"2026-11-12T09:15:00Z","body":"No publication slot is confirmed yet.","links":[]}
+      ]
+    }
+  ]
+}

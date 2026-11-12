@@ -1,0 +1,7 @@
+{
+  "list_release_requirements": "Show requirement IDs, descriptions, and mandatory status from the release manifest.",
+  "get_evidence": "Retrieve Jira issues, comments, dates, and links for one requirement. Provide its exact requirement_id.",
+  "assess_requirement": "Gather Jira evidence and assess one requirement. Provide its exact requirement_id.",
+  "assess_release": "Assess every manifest requirement in order and return the overall READY, NEEDS_REVIEW, or BLOCKED result.",
+  "import_dataset": "Preview the configured dataset import. This is always a dry run and never changes Jira."
+}
